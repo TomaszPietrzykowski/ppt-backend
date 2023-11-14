@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 
 const userRouter = require('./router/userRouter.js');
+const blogRouter = require('./router/blogRouter.js');
 const corsMiddleware = require('./middleware/corsMiddleware.js');
 const connectDB = require('./config/db.js');
 const errorMiddleware = require('./middleware/errorMiddleware.js');
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('*', corsMiddleware);
 // routes
 app.use('/api/users', userRouter);
+app.use('/api/blog', blogRouter);
 app.use(express.static(path.join(__dirname, '/view')));
 app.use('/api/*', (req, res, next) => {
 	return next(new AppError('Endpoint nie istnieje', 404));
