@@ -23,8 +23,8 @@ exports.register = catchAsync(async (req, res) => {
 		_id: newUser._id,
 		name: newUser.name,
 		email: newUser.email,
-		isAdmin: newUser.isAdmin,
-		isAuthor: newUser.isAuthor,
+		isAdmin: false,
+		isAuthor: false,
 		token,
 	};
 

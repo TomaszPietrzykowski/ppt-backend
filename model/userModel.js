@@ -50,6 +50,24 @@ const userSchema = new Schema(
 		passwordChangedAt: {
 			type: Date,
 		},
+		posts: {
+			type: [Schema.Types.ObjectId],
+			ref: 'Post',
+			required: true,
+			default: [],
+		},
+		// stories: {
+		// 	type: [Schema.Types.ObjectId],
+		// 	ref: "Story",
+		// 	required: true,
+		// 	default: [],
+		// },
+		// comments: {
+		// 	type: [Schema.Types.ObjectId],
+		// 	ref: "Comment",
+		// 	required: true,
+		// 	default: [],
+		// },
 	},
 	{ versionKey: false, timestamps: true }
 );

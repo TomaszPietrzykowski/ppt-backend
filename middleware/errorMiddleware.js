@@ -12,7 +12,6 @@ const handleDuplicateFieldsDB = (err) => {
 };
 
 const handleValidationErrorDB = (err) => {
-	console.log('Walidacja !');
 	const errors = Object.values(err.errors).map((el) => el.message);
 	const message = `Niepoprawne dane: ${errors.join('. ')}`;
 	return new AppError(message, 400);

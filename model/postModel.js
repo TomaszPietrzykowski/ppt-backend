@@ -17,6 +17,10 @@ const postSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'User',
 		},
+		last_edited_by: {
+			type: Schema.Types.ObjectId,
+			ref: 'User',
+		},
 		isPublished: {
 			type: Boolean,
 			required: true,
