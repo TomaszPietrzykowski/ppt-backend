@@ -11,7 +11,7 @@ const authorize = require('../middleware/authMiddleware.js');
 
 const blogRouter = express.Router();
 
-blogRouter.route('/').get(getAllPosts).post(createPost);
+blogRouter.route('/').get(getAllPosts).post(authorize, createPost);
 blogRouter
 	.route('/:id')
 	.get(getPostById)

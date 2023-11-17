@@ -10,7 +10,7 @@ const postSchema = new Schema(
 			type: String,
 			required: [true, 'Post musi mieć treść'],
 		},
-		snippet: {
+		content_text: {
 			type: String,
 		},
 		author: {

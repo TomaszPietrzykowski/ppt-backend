@@ -33,9 +33,7 @@ app.get('*', (req, res) =>
 app.use(errorMiddleware);
 // const server = app.listen();
 const server = app.listen(port, () => {
-	console.log(
-		`\x1b[33m***   Server listening on http://${host}:${port} \x1b[0m`
-	);
+	console.log(`\x1b[33m																																		Server listening on http://${host}:${port} \x1b[0m`);
 });
 
 process.on('unhandledRejection', (err) => {

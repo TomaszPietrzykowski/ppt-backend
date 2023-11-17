@@ -31,7 +31,6 @@ const authorize = catchAsync(async (req, res, next) => {
 	console.log('token: ', token);
 
 	const decoded = await jwtDecodeAsync(token, process.env.JWT_SECRET);
-	console.log('decoded: ', decoded);
 
 	const currentUser = await User.findById(decoded.id);
 	if (!currentUser) {

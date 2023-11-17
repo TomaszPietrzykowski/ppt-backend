@@ -11,11 +11,13 @@ exports.createPost = catchAsync(async (req, res) => {
 	const newPost = await Post.create({
 		title: req.body.title,
 		content_html: req.body.content_html,
-		snippet: req.body.snippet || extractSnippet(req.body.content_html),
+		content_text: req.body.content_text,
 		author: user._id,
 		last_edited_by: user._id,
 		isPublished: req.body.isPublished,
-		cover_photo: req.body.cover_photo,
+		cover_photo:
+			req.body.cover_photo ||
+			'https://source.unsplash.com/random/360x200/?nature',
 	});
 
 	res.status(201).json({
@@ -38,6 +40,7 @@ exports.getAllPosts = catchAsync(async (req, res) => {
 });
 
 exports.getPostById = catchAsync(async (req, res) => {
+	console.log('getPostById called');
 	const post = await Post.findById(req.params.id).populate([
 		{
 			path: 'author',
@@ -60,6 +63,7 @@ exports.getPostById = catchAsync(async (req, res) => {
 });
 
 exports.editPost = catchAsync(async (req, res) => {
+	console.log('EDIT POST CALLED, body: ', req.body);
 	const user = req.user;
 	if (!user || !user.isAuthor) {
 		res.status(401);
@@ -69,9 +73,8 @@ exports.editPost = catchAsync(async (req, res) => {
 	if (post) {
 		post.title = req.body.title || post.title;
 		post.content_html = req.body.content_html || post.content_html;
-		post.snippet =
-			req.body.snippet || extractSnippet(req.body.content_html);
-		post.author = post.author;
+		(post.content_text = req.body.content_text),
+			(post.author = post.author);
 		post.last_edited_by = user._id;
 		post.isPublished = req.body.isPublished || false;
 		post.cover_photo = req.body.cover_photo || post.cover_photo;
