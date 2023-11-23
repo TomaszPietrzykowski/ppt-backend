@@ -39,6 +39,17 @@ exports.getAllPosts = catchAsync(async (req, res) => {
 	});
 });
 
+exports.getLatestPosts = catchAsync(async (req, res) => {
+	const posts = await Post.find().sort({ createdAt: -1 }).limit(4);
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			posts,
+		},
+	});
+});
+
 exports.getPostById = catchAsync(async (req, res) => {
 	console.log('getPostById called');
 	const post = await Post.findById(req.params.id).populate([
