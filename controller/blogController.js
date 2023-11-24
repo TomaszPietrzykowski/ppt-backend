@@ -40,7 +40,7 @@ exports.getAllPosts = catchAsync(async (req, res) => {
 });
 
 exports.getLatestPosts = catchAsync(async (req, res) => {
-	const posts = await Post.find().sort({ createdAt: -1 }).limit(4);
+	const posts = await Post.find().sort({ updatedAt: -1 }).limit(4);
 
 	res.status(200).json({
 		status: 'success',
